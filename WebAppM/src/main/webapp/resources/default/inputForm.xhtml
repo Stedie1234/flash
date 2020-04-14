@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml"   
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+	  
+	  <composite:interface>
+			<composite:attribute name="label1" />
+			<composite:attribute name="label2" />
+			<composite:attribute name="value1" />
+			<composite:attribute name="value2" />
+			
+	  </composite:interface>
+	  
+	  <composite:implementation>
+			<h:form>
+			#{cc.attrs.label1} : <h:inputText value="#{cc.attrs.value1}" >       </h:inputText> <br/>
+			#{cc.attrs.label2} : <h:inputText required="true" id="i1" value="#{cc.attrs.value2}">
+			
+		    <f:validateRegex pattern="^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$" />			</h:inputText><h:messages for="i1"/><br/>
+			
+			
+			
+			<h:commandButton value="Submit" id="btnclick"  name="seas"  action="response">
+		
+			
+			</h:commandButton>
+			</h:form>
+			
+		
+			
+			
+	  </composite:implementation>
+	  
+</html>

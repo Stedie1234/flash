@@ -1,21 +1,286 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:res="http://xmlns.jcp.org/jsf/composite/default">
-<head>
-  
-</head>
-
-<body>
-
-<res:inputForm label1="username" label2="password" value1="#{benutzerBean.username}" value2="#{benutzerBean.password}" ></res:inputForm>
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:res="http://xmlns.jcp.org/jsf/composite/default"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
 
 
+<h:head>
+	<h:outputStylesheet name="primeicons/primeicons.css"
+		library="primefaces" />
 
 
 
-</body>
+	<h:outputStylesheet name="test.css" library="css" />
+	<link rel="stylesheet" type="text/css" href="test.css" />
+
+
+
+
+
+</h:head>
+
+
+<h:body styleClass="klasse1">
+
+
+
+	<res:inputCustomer></res:inputCustomer>
+
+
+	<br />
+
+	<h:form prependId="false">
+
+
+		<h:panelGrid columns="2">
+
+			<h:outputText value="Type JavaBeat :" />
+
+			<p:autoComplete id="autocomplete" maxResults="5" dropdown="true"
+				value="#{autoComplete.message}"
+				completeMethod="#{autoComplete.complete}" minQueryLength="5"></p:autoComplete>
+		</h:panelGrid>
+
+
+
+		<br />
+		<p:inputTextarea rows="5" cols="30" autoResize="true"
+			counter="charleft" counterTemplate="{0} chars left" maxlength="100"></p:inputTextarea>
+		<br />
+		<p:outputLabel id="charleft"></p:outputLabel>
+		<br />
+		<p:outputLabel value="I accept terms and conditions"></p:outputLabel>
+		<p:selectBooleanButton id="value1" value="#{autoComplete.agree}"
+			onLabel="Yes" offLabel="Noo"></p:selectBooleanButton>
+
+		<br />
+		<br />
+		<br />
+
+
+		<p:selectBooleanCheckbox value="#{autoComplete.checkbox}"
+			itemLabel="Nichtwählers"></p:selectBooleanCheckbox>
+		<br />
+		<p:selectOneButton value="#{autoComplete.platform}">
+
+			<f:selectItem itemLabel="XBOX" itemValue="XBOX"></f:selectItem>
+			<f:selectItem itemLabel="PLAYSTATION" itemValue="PLAYSTATION"></f:selectItem>
+			<f:selectItem itemLabel="PC" itemValue="PC"></f:selectItem>
+
+
+		</p:selectOneButton>
+
+		<br />
+		<h:outputText value="Text selected: "></h:outputText>
+		<h:outputText id="display" value="#{autoComplete.platform}"></h:outputText>
+
+
+
+		<br />
+		<p:commandButton value="submit" update="display" />
+
+
+
+		<br />
+		<br />
+		<br />
+
+		<h:panelGrid columns="4" cellpadding="10">
+			<h:outputText value="Deine Plattform:"></h:outputText>
+			<p:selectOneRadio value="#{autoComplete.console}">
+				<f:selectItem itemLabel="XBOX" itemValue="XBOX"></f:selectItem>
+				<f:selectItem itemLabel="PLAYSTATION" itemValue="PLAYSTATION"></f:selectItem>
+				<f:selectItem itemLabel="PC" itemValue="PC"></f:selectItem>
+			</p:selectOneRadio>
+
+		</h:panelGrid>
+		<br />
+
+		<h:panelGrid columns="6">
+
+
+			<h:outputLabel value="Deine Plattform mit select one Menu"></h:outputLabel>
+
+			<p:selectOneMenu vlaue="#{autoComplete.somenu}">
+
+				<f:selectItem itemLabel="XBOX" itemValue="XBOX"></f:selectItem>
+				<f:selectItem itemLabel="PLAYSTATION" itemValue="PLAYSTATION"></f:selectItem>
+				<f:selectItem itemLabel="PC" itemValue="PC"></f:selectItem>
+
+			</p:selectOneMenu>
+
+			<h:outputLabel value="Auto mit ListGroup"></h:outputLabel>
+
+			<p:selectOneMenu value="#{autoComplete.car}">
+
+				<f:selectItem itemLabel="Select Car" itemValue=""></f:selectItem>
+				<f:selectItems value="#{autoComplete.cars}"></f:selectItems>
+
+			</p:selectOneMenu>
+
+
+
+			<h:outputText value="SelectOneLIstbox">
+			</h:outputText>
+			<p:selectOneListbox value="#{autoComplete.carlistbox}" filter="true">
+
+				<f:selectItem itemLabel="bmw" itemValue="XBOX"></f:selectItem>
+				<f:selectItem itemLabel="audi" itemValue="PLAYSTATION"></f:selectItem>
+				<f:selectItem itemLabel="vw" itemValue="PC"></f:selectItem>
+
+			</p:selectOneListbox>
+
+
+
+
+
+		</h:panelGrid>
+		<br />
+		<h:panelGrid columns="5">
+			<h:outputText value="cheackBoxmenu:"></h:outputText>
+			<p:selectCheckboxMenu value="#{autoComplete.selectedCars}"
+				label="CARS">
+
+				<f:selectItem itemLabel="bmw" itemValue="XBOX"></f:selectItem>
+				<f:selectItem itemLabel="audi" itemValue="PLAYSTATION"></f:selectItem>
+				<f:selectItem itemLabel="vw" itemValue="PC"></f:selectItem>
+
+			</p:selectCheckboxMenu>
+			<p:commandButton value="submit" update="scars"></p:commandButton>
+			<h:outputText value="Selected cars: "></h:outputText>
+			<p:dataList id="scars" value="#{autoComplete.selectedCars}" var="car"
+				emptyMessage="No cars selected" style="margin-bottom: 10px;">
+                #{car}
+            </p:dataList>
+		</h:panelGrid>
+
+
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Three state checkbox"></h:outputLabel>
+			<p:triStateCheckbox value="#{autoComplete.value}"
+				itemLabel="Ja/Nein/Vielleicht"></p:triStateCheckbox>
+
+		</h:panelGrid>
+
+		<div class="ui-inputgroup">
+			<span class="ui-inputgroup-addon"><i class="pi pi-user"></i></span>
+			<p:inputText placeholder="Username" id="username"></p:inputText>
+
+
+
+			<span class="ui-inputgroup-addon"><i class="pi pi-lock"></i></span>
+			<p:inputText placeholder="Password" id="password"></p:inputText>
+		</div>
+
+		<br />
+InputNumber:<p:inputNumber value="#{autoComplete.valueInputNumber}">
+
+			<p:ajax update="outputtext"></p:ajax>
+
+		</p:inputNumber>
+		<h:outputText id="outputtext" value="#{autoComplete.valueInputNumber}"></h:outputText> Selected and updated with ajax
+
+        <br />
+		<br />
+
+		<h:panelGrid columns="3">
+			<p:outputLabel value="InputMask"></p:outputLabel>
+			<p:inputMask id="regex" value="#{autoComplete.date}" maxlength="30"
+				validatorMessage="Type in an email" mask="99999">
+
+
+			</p:inputMask>
+
+
+
+
+
+		</h:panelGrid>
+
+
+		<h:panelGrid columns="10" cellpadding="5">
+			<p:outputLabel value="ToggleSwitch"></p:outputLabel>
+			<p:toggleSwitch value="#{autoComplete.tswitch}">
+
+				<p:ajax update="tout" />
+			</p:toggleSwitch>
+			<p:outputLabel id="tout" value="#{autoComplete.tswitch}"></p:outputLabel>
+			<p:outputLabel value="Chip - Multiple input values :"></p:outputLabel>
+			<p:chips value="#{autoComplete.gunlist}">
+				<p:ajax update="chiptext"></p:ajax>
+			</p:chips>
+
+			<p:outputLabel id="chiptext" value="#{autoComplete.gunlist}"></p:outputLabel>
+
+			<p:outputLabel value="pick a date!"></p:outputLabel>
+			<p:datePicker value="#{autoComplete.ldate}">
+				<p:ajax event="dateSelect" update="dates"></p:ajax>
+			</p:datePicker>
+			<p:outputLabel value="Date selected:"></p:outputLabel>
+
+			<p:outputLabel id="dates" value="#{autoComplete.ldate}"></p:outputLabel>
+
+
+
+
+
+		</h:panelGrid>
+		<p:signature style="width:400px;height:200px" widgetVar="sig"></p:signature>
+		<br />
+
+		<h:panelGrid columns="9">
+
+			<p:spinner value="#{autoComplete.spinner}" stepFactor="0.25">
+				<p:ajax update="spinntext"></p:ajax>
+			</p:spinner>
+
+			<p:outputLabel id="spinntext" value="#{autoComplete.spinner}"></p:outputLabel>
+
+
+
+
+
+			<p:inputText id="slider" value="#{autoComplete.slider}">
+
+			</p:inputText>
+			<p:slider style="width:200px;" for="slider" minValue="0"
+				maxValue="100" step="0.1">
+				<p:ajax event="slideEnd" update="msgs"
+					listener="#{autoComplete.onSlideEnd}"></p:ajax>
+			</p:slider>
+
+			<p:messages id="msgs" />
+
+			<p:inputSwitch value="#{autoComplete.inputs}">
+				<p:ajax update="@next" />
+
+			</p:inputSwitch>
+			<p:outputLabel id="seas" value="#{autoComplete.inputs}"></p:outputLabel>
+			<p:password feedback="true" required="true"
+				value="#{autoComplete.password}"></p:password>
+		</h:panelGrid>
+		<h1>Data</h1>
+		<h:panelGrid>
+
+
+
+		</h:panelGrid>
+
+
+
+
+
+	</h:form>
+
+
+
+
+
+
+</h:body>
 
 </html>

@@ -20,20 +20,28 @@ public class CustomerDao implements Dao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 	}
 
 	@Override
 	public List<Customer> getAllCustomers() {
 		ArrayList<Customer> al = new ArrayList<Customer>();
 		try {
+			db.getConnection();
 			ResultSet rs = db.executeQuery("select * from customers");
 			while (rs.next()) {
 				al.add(new Customer(rs.getInt(1), rs.getString(2), rs.getInt(3)));
 			}
 
-		} catch (SQLException e) {
+		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				db.closeConnection()	;
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
 		}
 
 		return al;
@@ -52,6 +60,7 @@ public class CustomerDao implements Dao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
 		return c;
 	}
 
@@ -82,7 +91,7 @@ public class CustomerDao implements Dao {
 					.prepareStatement("update customers set name=? where customerid=?");
 			ps.setInt(2, id);
 			ps.setString(1, nname);
-		
+
 			ps.executeUpdate();
 
 		} catch (ClassNotFoundException e) {
@@ -98,10 +107,9 @@ public class CustomerDao implements Dao {
 	@Override
 	public void updateStudent(int id, int nage) {
 		try {
-			PreparedStatement ps = db.getConnection()
-					.prepareStatement("update customers set age=? where customerid=?");
+			PreparedStatement ps = db.getConnection().prepareStatement("update customers set age=? where customerid=?");
 			ps.setInt(2, id);
-		
+
 			ps.setInt(1, nage);
 			ps.executeUpdate();
 
@@ -118,8 +126,8 @@ public class CustomerDao implements Dao {
 	@Override
 	public void delteCustomer(int id) {
 		try {
-			
-	db.getConnection().createStatement().executeUpdate("delete from customers where customerid="+id);
+
+			db.getConnection().createStatement().executeUpdate("delete from customers where customerid=" + id);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -133,17 +141,16 @@ public class CustomerDao implements Dao {
 	public void Close() {
 		db.closeConnection();
 	}
-	
+
 	@Override
 	public void insertCustomer(int id, String nname, int nage) {
 		try {
 			PreparedStatement ps = db.getConnection().prepareStatement("insert into customers values(?,?,?)");
-		ps.setInt(1, id);
-		ps.setString(2, nname);
-		ps.setInt(3, nage);
-		ps.executeUpdate();
-		
-		
+			ps.setInt(1, id);
+			ps.setString(2, nname);
+			ps.setInt(3, nage);
+			ps.executeUpdate();
+
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

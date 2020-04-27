@@ -1,0 +1,38 @@
+@charset "ISO-8859-1";
+
+div>p {
+	
+}
+
+p span {
+	
+}
+
+.ui-div .ui-p:last-child {
+	
+}
+
+.ui-p[id|=seas] {
+	background-color: red;
+}
+
+.ui-p[id^=seas] {
+		
+}
+
+.ui-p[id$=seas] {
+
+}
+
+
+
+.ui-p[id*=seas] {
+	
+}
+.ui-p[id~=seas]{
+	
+}
+
+.ui-p[id] {
+	
+}

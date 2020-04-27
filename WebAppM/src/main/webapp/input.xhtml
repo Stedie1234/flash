@@ -14,10 +14,6 @@
 
 
 
-	<h:outputStylesheet name="test.css" library="css" />
-	<link rel="stylesheet" type="text/css" href="test.css" />
-
-
 
 
 
@@ -264,17 +260,45 @@ InputNumber:<p:inputNumber value="#{autoComplete.valueInputNumber}">
 				value="#{autoComplete.password}"></p:password>
 		</h:panelGrid>
 		<h1>Data</h1>
-		<h:panelGrid>
+		<p:dataList value="#{controller.customers}" var="customer"
+			type="ordered">
+			<f:facet name="header">
+            Customers
+        </f:facet>
+		#{customer.name}
+		
+		</p:dataList>
 
 
 
-		</h:panelGrid>
+		<p:dataView value="#{controller.customers}" var="customer"
+			paginator="true" >
 
 
+			<p:dataViewGridItem columns="3">
+
+
+				<h:outputLabel>	#{customer.id},#{customer.name},#{customer.age}</h:outputLabel>
+
+
+
+
+
+
+
+			</p:dataViewGridItem>
+
+
+
+
+
+		</p:dataView>
 
 
 
 	</h:form>
+
+
 
 
 

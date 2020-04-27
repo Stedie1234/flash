@@ -13,7 +13,7 @@ public class DBManager {
 
 	public Connection getConnection() throws SQLException, ClassNotFoundException {
 
-		if (con != null) {
+		if (con != null && con.isClosed() == false) {
 			return con;
 		} else {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -27,30 +27,27 @@ public class DBManager {
 
 	public ResultSet executeQuery(String query) throws SQLException {
 		Statement st = con.createStatement();
+		
 		return st.executeQuery(query);
+
 	}
 
 	public int executeUpdate(String query) throws SQLException {
 		return con.createStatement().executeUpdate(query);
 	}
 
-	
 	public void closeConnection() {
 		try {
-			if(con.isClosed()) {
-				
-			}else {
-				con.close();	
+			if (con.isClosed()) {
+
+			} else {
+				con.close();
 			}
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
 
 }

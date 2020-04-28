@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      >
+<head>
+
+
+
+  <title><ui:insert name="title">Default title</ui:insert></title>
+</head>
+
+<body>
+
+<cc:interface></cc:interface>
+<cc:implementation>
+
+<h:form>
+ID:<h:inputText value="#{controller.c.id}"></h:inputText><br/>
+NAME:<h:inputText value="#{controller.c.name}"></h:inputText><br/>
+AGE<h:inputText value="#{controller.c.age}"></h:inputText><br/>
+<br/><br/><br/><br/><br/>
+
+
+<p:outputLabel for="@next" value="Test"/>
+<p:inputText value="seas" required="true" requiredMessage="Nicht OK" accesskey="i"/><p:message for="@previous"/><br/>
+
+
+
+
+<br/><br/><br/><br/><br/>
+
+
+<h:commandButton value="Show Customers" actionListener="#{controller.processAction}" action="response"></h:commandButton>
+<h:commandButton value="Insert Customer" actionListener="#{controller.insert}"></h:commandButton>
+
+</h:form>
+
+</cc:implementation>
+
+
+
+
+
+
+</body>
+
+</html>

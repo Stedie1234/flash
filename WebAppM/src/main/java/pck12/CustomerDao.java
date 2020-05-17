@@ -32,13 +32,13 @@ public class CustomerDao implements Dao {
 			while (rs.next()) {
 				al.add(new Customer(rs.getInt(1), rs.getString(2), rs.getInt(3)));
 			}
-
+			rs.close();
 		} catch (SQLException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
-				db.closeConnection()	;
+
 			} catch (Exception e2) {
 				// TODO: handle exception
 			}
